@@ -32,3 +32,10 @@ The trade-off is speed. The DFT is computed directly in O(N^2) rather than using
 - **`nfft < nperseg`**: the segment is truncated to `nfft` samples *after* windowing over the full `nperseg` samples. This means the window normalization still uses the full window, but only `nfft` samples enter the DFT.
 - **Data shorter than `nperseg`**: a single segment is used and zero-padded to `nperseg`. No error is raised.
 - **Per-segment detrending**: `detrend='constant'` and `detrend='linear'` operate on each segment independently, not on the global signal. This is standard Welch behaviour but differs from detrending the whole signal upfront.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
