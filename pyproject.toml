@@ -1,6 +1,6 @@
 [project]
 name = "welch-power-spectrum"
-version = "0.1.1"
+version = "0.1.2"
 description = "Estimates power spectral density via Welch's overlapped segment averaging method."
 requires-python = ">=3.10"
 dependencies = []
